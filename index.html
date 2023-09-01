@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="robots" content="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Cardaholic - カードホリック</title>
+    <!--<link rel="canonical" href="https://www.edgegrading.com/centering">-->
+    <!--<meta name="description" content="Upload an image to use a combination of artificial intelligence and manual adjustments to calculate a trading card's centering percentages.">-->
+    <!--<link rel="preconnect" href="https://static.edgegrading.com">-->
+    <!--link rel="shortcut icon" type="image/x-icon" href="https://static.edgegrading.com/logos/edge-favicon.ico"-->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,200;8..144,400;8..144,600&amp;display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Barlow';
+            font-style: normal;
+            font-weight: 300;
+            src: url(fonts/barlow-300.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        @font-face {
+            font-family: 'Barlow';
+            font-style: normal;
+            font-weight: 600;
+            src: url(fonts/barlow-600.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        @font-face {
+            font-family: 'Barlow';
+            font-style: normal;
+            font-weight: 800;
+            src: url(fonts/barlow-800.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/cardaholic.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-E0PLPJFCJJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-E0PLPJFCJJ');
+    </script>-->
+</head>
+<body class="header-bg">
+    <header class="header-no-margin interior">
+        <div class="logo-bg">
+            <a href="/"><img src="images/cardaholic-logo-white-20degree.svg" alt="Cardaholic logo"> </a>
+        </div>
+
+        <a id="mobile-menu-button" tabindex="3">メニュー <span id="mobile-menu-icon"></span></a>
+        <menu id="menu">
+            <ul>
+                <li><a href="/">センタリング工具</a></li>
+                <li><a href="/">鑑定基準</a></li>
+                <li><a href="/contact">お問い合わせ</a></li>
+                <li><a class="button submission-button" href="/submit" disabled>鑑定申請</a></li>
+            </ul>
+        </menu>
+    </header>
+
+    <div class="page-content">
+        <div class="row bg">
+            <img src="images/cardaholic-header-image.jpg" alt="ポケモンカード鑑定サービス">
+            <div class="container">
+                <h1>ポケモンカード鑑定サービス</h1>
+                <h4>
+                    専門のポケモンカードコレクション用品
+                    <br>
+                    2024年、近日公開予定
+                </h4>
+            </div>
+        </div>
+
+        <div id="centering-page" class="row">
+            <div class="container">
+                <div class="centering-header">
+                    <div id="centering-instructions">
+                        <h4>以下のいずれかのカードの画像をアップロードして、センタリングを計測してください。</h4>
+                        <p class="note">スリーブやトップローダーなしで、カードの上から直接撮影した、背景が一色の画像が最も適しています。</p>
+                    </div>
+
+                    <div id="centering-loading">
+                        <h4 class="loading">画像の読み込み中</h4>
+                    </div>
+
+                    <div id="centering-loaded">
+                        <h4>あなたの画像が準備されました。</h4>
+                        <p class="note">手動調整を行う場合は、以下の画像の点線のハンドルを使用してください。</p>
+                    </div>
+                </div>
+
+                <div id="upload-select" class="active">
+                    <div id="upload-items" class="upload-items">
+                        <div class="drag-container">
+                            <div class="file-upload-icon">
+                                <span></span>
+                            </div>
+                            <p>画像をここにドラッグしてアップロードするか、下のボタンを使用してください。</p>
+                        </div>
+                        <input type="file" id="image-input" accept="image/*">
+                        <div id="click-to-upload" class="button">画像を選択してください。<div class="spinner"></div></div>
+                        <div id="click-to-capture" class="button">カメラで写真を撮影する</div>
+                    </div>
+
+                    <div class="upload-confirm">
+                        <div id="upload-preview"></div>
+
+                        <div>
+                            <a id="upload-confirm-button" class="button"><span class="hide-on-mobile">この</span>画像を使用<span class="hide-on-mobile">する</span></a><a id="upload-cancel" href="/centering">キャンセル</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="upload-scan-container">
+                    <img id="upload-scan-image">
+
+                    <div id="upload-scanner">
+                        <div id="scan-block" class="block horizontal">
+                            <div class="scan-line"></div>
+                        </div>
+                        <div id="scan-line" class="line horizontal"></div>
+                        <div id="scan-line-2" class="line horizontal"></div>
+                    </div>
+                </div>
+
+                <div id="capture">
+                    <div id="screen-area">
+                        <div id="video-container">
+                            <div id="video-card-opacity"></div>
+
+                        </div>
+
+                        <div id="video-card-overlay"></div>
+                        <canvas id="still-canvas"></canvas>
+                        <div id="capture-button"></div>
+                    </div>
+                </div>
+
+                <div id="measure">
+                    <ul class="measurement-display">
+                        <li class="heading">センタリング:</li>
+                        <li>
+                            <p>Left <span class="medium-gray-slash">/</span> 右:</p>
+                            <p class="values"><span id="measure-value-left">2.1mm</span> <span class="medium-gray-slash">/</span> <span id="measure-value-right">2.2%</span></p>
+                            <p class="percentages"><span id="measure-percentage-left">45%</span> <span class="medium-gray-slash">/</span> <span id="measure-percentage-right">55%</span></p>
+                        </li>
+
+                        <li>
+                            <p>Top <span class="medium-gray-slash">/</span> 下:</p>
+                            <p class="values"><span id="measure-value-top">2.1mm</span> <span class="medium-gray-slash">/</span> <span id="measure-value-bottom">2.4%</span></p>
+                            <p class="percentages"><span id="measure-percentage-top">45%</span> <span class="medium-gray-slash">/</span> <span id="measure-percentage-bottom">55%</span></p>
+                        </li>
+
+                        <li class="hide-on-mobile">
+                            <p class="manual"><strong>手動調整</strong><br>(必要な場合) →</p>
+                        </li>
+
+                        <li class="show-on-mobile notice">
+                            <p class="manual"><strong>以下の画像で必要な場合は手動調整を行い</strong>「評価を表示」をクリックしてください。</p>
+                        </li>
+
+                        <li>
+                            <div class="button" id="measure-submit">評価を表示<div class="spinner"></div></div>
+
+                        </li>
+                    </ul>
+
+                    <div id="measurement-area">
+                        <img id="source-img" src>
+
+                        <div class="holder">
+                            <div id="line-inside-left">
+                                <div class="handle">
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+
+                            <div id="line-inside-right">
+                                <div class="handle">
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+
+                            <div id="line-inside-top">
+                                <div class="handle">
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+
+                            <div id="line-inside-bottom">
+                                <div class="handle">
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+
+                            <div id="line-outside-top">
+                                <div class="handle">
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+                            <div id="line-outside-bottom">
+                                <div class="handle">
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+                            <div id="line-outside-left">
+                                <div class="handle">
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+                            <div id="line-outside-right">
+                                <div class="handle">
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="hover-message">各境界線の点線ハンドルを使用して、必要な手動調整を行ってください。</div>
+
+                    </div>
+
+
+
+
+
+                </div>
+
+                <div id="final-image">
+                    <h4>共有可能な画像:</h4>
+
+                    <p>
+                        <span>URL:</span> <input id="final-image-url" type="text" value> <span id="final-image-url-copy">コピー</span>
+                    </p>
+
+                    <img id="final-image-img" src>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="highlight-button-area">
+                    <h4>ポケモンカードコレクション用品專門店</h4>
+                    <p>カードホリックの透明スリーブ</p>
+                    <a class="button" href="/shop">オンラインショップ</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="row" itemscope itemtype="https://schema.org/FAQPage">
+            <div class="container">
+
+                <!--
+                    https://developers.google.com/search/docs/appearance/structured-data/faqpage
+                    https://search.google.com/test/rich-results
+                -->
+
+                <div class="row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="row graph">
+                        <div class="col col-47-5 mar-r-5 stack">
+                            <h5>カードの表面:</h5>
+
+                            <div class="table five centering">
+                                <ul class="heading">
+                                    <li>評価:</li>
+                                    <li>10</li>
+                                    <li>9</li>
+                                    <li>8</li>
+                                    <li>7</li>
+                                </ul>
+
+                                <ul>
+                                    <li>PSA</li>
+                                    <li>60/40</li>
+                                    <li>65/35</li>
+                                    <li>70/30</li>
+                                    <li>75/25</li>
+                                </ul>
+
+                                <ul>
+                                    <li>BGS</li>
+                                    <li>50/50</li>
+                                    <li>55/45</li>
+                                    <li>60/40</li>
+                                    <li>65/35</li>
+                                </ul>
+
+                                <ul>
+                                    <li>*CGS</li>
+                                    <li>50/50</li>
+                                    <li>55/45</li>
+                                    <li>60/40</li>
+                                    <li>65/35</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col col-47-5 stack">
+                            <h5>カードの裏面:</h5>
+
+                            <div class="table five centering">
+
+                                <ul class="heading">
+                                    <li>評価:</li>
+                                    <li>10</li>
+                                    <li>9</li>
+                                    <li>8</li>
+                                    <li>7</li>
+                                </ul>
+
+                                <ul>
+                                    <li>PSA</li>
+                                    <li>75/25</li>
+                                    <li>90/10</li>
+                                    <li>90/10</li>
+                                    <li>90/10</li>
+                                </ul>
+
+                                <ul>
+                                    <li>BGS</li>
+                                    <li>50/50</li>
+                                    <li>70/30</li>
+                                    <li>80/20</li>
+                                    <li>90/10</li>
+                                </ul>
+
+                                <ul>
+                                    <li>*CGS</li>
+                                    <li>50/50</li>
+                                    <li>55/45</li>
+                                    <li>60/40</li>
+                                    <li>70/30</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <p>
+                            <strong>*CGS</strong> : カードホリック鑑定サービス (Cardaholic Grading Service)
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <div id="centering-overlay" class="overlay-bg">
+        <div class="overlay-border">
+            <div class="overlay landing-page card-on-left">
+
+
+                <div class="top">
+                    <p class="while-we-load">カードを読み込んでいる間</p>
+
+                    <img src="./images/cardaholic-logo-white.svg" alt="Edge Grading logo">
+
+                    <h4>カードホリック</h4>
+
+                    <p>
+                        専門のポケモンカードコレクション用品
+                        <br>
+                        2024年、近日公開予定
+                    </p>
+                </div>
+
+                <div class="bottom">
+                    <p><strong>カードホリックは、2024年末に選ばれた一部のメンバー向けに、コレクターシリーズの製品とプライベートグレーディングサービスを展開する予定です。</strong> <br>最新情報を最初に受け取るために、以下にメールアドレスを入力してください！</p>
+                    <form id="centering-subscribe" class="formula row" action="#">
+                        <input type="email" name="email" required value placeholder="youremail@gmail.com">
+                        <button class="button" type="submit">登録する</button>
+                    </form>
+                </div>
+
+                <div id="centering-overlay-close"></div>
+
+                <span class="hide-on-mobile"><img class="feature-img" src="images/pokemon_miraidon.png" alt="miraidon promo card"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="js/cardaholic-compiled.js"></script>
+
+
+    <div id="newsletter" class="newsletter footer-top ">
+        <div id="sticky-end" class="container">
+            <h2>
+                専門のポケモンカードコレクション用品
+                <br>
+                2024年、近日公開予定
+            </h2>
+            <!--<p><strong>カードホリックは、2024年末に選ばれた一部のメンバー向けに、コレクターシリーズの製品とプライベートグレーディングサービスを展開する予定です。</strong>最新情報を最初に受け取るために、以下にメールアドレスを入力してください！</p>-->
+
+            <div id="mc_embed_signup">
+                <form action="https://edgegrading.us14.list-manage.com/subscribe/post?u=56904c3f9f18d606e90a96c9f&id=ac3db024d5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate formula" target="_blank" novalidate>
+                    <input type="email" value name="EMAIL" placeholder="Email address" validate autocomplete="email" class="required email" id="mce-EMAIL">
+                    <button name="subscribe" id="mc-embedded-subscribe" class="button inline mobile-block">登録する</button>
+                    <div id="mce-responses" class="clear">
+                        <div class="response" id="mce-error-response" style="display: none;"></div>
+                        <div class="response" id="mce-success-response" style="display: none;"></div>
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                            <input type="text" name="b_30b415840b1035ec0b0cc6ce5_623eeedb8a" tabindex="-1" value>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <script type="text/javascript" src="js/mc-validate.js"></script>
+            <script type="text/javascript">(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'ADDRESS'; ftypes[3] = 'address'; fnames[4] = 'PHONE'; ftypes[4] = 'phone'; fnames[5] = 'BIRTHDAY'; ftypes[5] = 'birthday'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <!--<div class="row">
+                <ul class="center social-icons no-margin-top">
+                    <li><a href="https://www.instagram.com/edgegrading/"><img class="lazy" data-src="https://static.edgegrading.com/icons/instagram-icon.png" alt="Instagram logo"></a></li>
+                    <li><a href="https://www.twitter.com/gradingedge/"><img class="lazy" data-src="https://static.edgegrading.com/icons/twitter-x-icon.png" alt="Twitter X logo"></a></li>
+                </ul>
+            </div>-->
+            <div class="row center">
+                <a href="http://cardaholic.github.io"><img class="footer-logo lazy" data-src="./images/cardaholic-logo-white.svg" alt="Cardaholic logo"></a>
+            </div>
+            <ul class="center">
+                <li><a href="/">センタリング工具</a></li>
+                <li><a href="/">鑑定基準</a></li>
+                <li><a href="/contact">お問い合わせ</a></li>
+                <li><a href="/privacy">個人情報保護方針</a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+
+
+
+</body>
+</html>
