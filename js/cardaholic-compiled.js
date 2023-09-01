@@ -4523,7 +4523,7 @@ app.checkMobile(), app.checkIP(), app.setSwipeVars(), app.const = {
         const k = n / 2 + C + T + C;
         x(!1, e.el.colorCanvasContext, app.settings.center.gradingStandards.psa, "PSA", k, w + 80), x(!1, e.el.colorCanvasContext, app.settings.center.gradingStandards.bgs, "BGS", k, w + 160), x(!1, e.el.colorCanvasContext, app.settings.center.gradingStandards.edge, "*CGS", k, w + 200);
         var S = new Image;
-        S.src = "edge-logo-blue-300.png", S.onload = function () {
+        S.src = "edge-logo-white-bg.png", S.onload = function () {
             const t = S.naturalHeight / S.naturalWidth,
                 n = g - 80,
                 o = n * t;
