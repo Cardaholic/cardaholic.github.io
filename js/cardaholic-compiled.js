@@ -4530,17 +4530,19 @@ app.checkMobile(), app.checkIP(), app.setSwipeVars(), app.const = {
             e.el.colorCanvasContext.drawImage(S, 48, 60, n, o);
             var i = e.el.colorCanvas.toDataURL("image/jpeg", 1);
             const r = Math.round(2e3 * Math.random());
-            $.ajax({
-                type: "POST",
-                url: "/ajax/cardaholic-save-image.php?v=" + r,
-                data: {
-                    filename: "cardaholic-centering-image.jpg",
-                    imgBase64: i
-                }
-            }).done((function (e) {
-                let t = e.replace("s3.amazonaws.com/", "");
-                document.getElementById("final-image-url").value = t, document.getElementById("final-image-img").src = t, $("#final-image").show(), $("#measure").removeClass("active")
-            }))
+            document.getElementById("final-image-url").value = "", document.getElementById("final-image-img").src = i, $("#final-image").show(), $("#measure").removeClass("active")
+
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/ajax/cardaholic-save-image.php?v=" + r,
+            //    data: {
+            //        filename: "cardaholic-centering-image.jpg",
+            //        imgBase64: i
+            //    }
+            //}).done((function (e) {
+            //    let t = e.replace("s3.amazonaws.com/", "");
+            //    document.getElementById("final-image-url").value = t, document.getElementById("final-image-img").src = t, $("#final-image").show(), $("#measure").removeClass("active")
+            //}))
         }
     },
     findEdges: function () {
