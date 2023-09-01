@@ -4279,31 +4279,26 @@ app.checkMobile(), app.checkIP(), app.setSwipeVars(), app.const = {
                 back: 100
             }
         },
-        edge: {
-            plus: {
-                label: "10+",
-                front: 52,
-                back: 65
-            },
+        cgs: {
             g10: {
                 label: "10",
-                front: 55,
-                back: 75
+                front: 50,
+                back: 50
             },
             g9: {
                 label: "9",
-                front: 60,
-                back: 80
+                front: 55,
+                back: 55
             },
             g8: {
                 label: "8",
-                front: 70,
-                back: 90
+                front: 60,
+                back: 60
             },
             g7: {
                 label: "7",
-                front: 75,
-                back: 90
+                front: 65,
+                back: 65
             },
             gLessThan7: {
                 label: "<7",
@@ -4513,25 +4508,26 @@ app.checkMobile(), app.checkIP(), app.setSwipeVars(), app.const = {
                 if (leftPercentage <= e[a] && rightPercentage <= e[a] && topPercentage <= e[a] && bottomPercentage <= e[a]) return void t.fillText(o + ": " + e.label, i, r)
             }
         }
-        e.el.colorCanvasContext.fillStyle = "#000", e.el.colorCanvasContext.font = "500 " + b + " 'Barlow'", e.el.colorCanvasContext.textAlign = "center", e.el.colorCanvasContext.fillText("Left/Right:", g + y, 60), e.el.colorCanvasContext.font = "italic 300 " + b + " 'Barlow'", e.el.colorCanvasContext.fillText(e.state.centeringStats.borderLeftInMM + "mm / " + e.state.centeringStats.borderRightInMM + "mm", g + y, 110), e.el.colorCanvasContext.fillStyle = "#ec008c", e.el.colorCanvasContext.font = "800 " + b + " 'Barlow'", e.el.colorCanvasContext.fillText(e.state.centeringStats.borderLeftPercentage + "% / " + e.state.centeringStats.borderRightPercentage + "%", g + y, 160), e.el.colorCanvasContext.fillStyle = "#000", e.el.colorCanvasContext.font = "500 " + b + " 'Barlow'", e.el.colorCanvasContext.textAlign = "center", e.el.colorCanvasContext.fillText("Top/Bottom:", v + y, 60), e.el.colorCanvasContext.font = "italic 300 " + b + " 'Barlow'", e.el.colorCanvasContext.fillText(e.state.centeringStats.borderTopInMM + "mm / " + e.state.centeringStats.borderBottomInMM + "mm", v + y, 110), e.el.colorCanvasContext.fillStyle = "#ec008c", e.el.colorCanvasContext.font = "800 " + b + " 'Barlow'", e.el.colorCanvasContext.fillText(e.state.centeringStats.borderTopPercentage + "% / " + e.state.centeringStats.borderBottomPercentage + "%", v + y, 160);
+        e.el.colorCanvasContext.fillStyle = "#000", e.el.colorCanvasContext.font = "500 " + b + " 'Barlow'", e.el.colorCanvasContext.textAlign = "center", e.el.colorCanvasContext.fillText("左/右:", g + y, 60), e.el.colorCanvasContext.font = "italic 300 " + b + " 'Barlow'", e.el.colorCanvasContext.fillText(e.state.centeringStats.borderLeftInMM + "mm / " + e.state.centeringStats.borderRightInMM + "mm", g + y, 110), e.el.colorCanvasContext.fillStyle = "#ec008c", e.el.colorCanvasContext.font = "800 " + b + " 'Barlow'", e.el.colorCanvasContext.fillText(e.state.centeringStats.borderLeftPercentage + "% / " + e.state.centeringStats.borderRightPercentage + "%", g + y, 160), e.el.colorCanvasContext.fillStyle = "#000", e.el.colorCanvasContext.font = "500 " + b + " 'Barlow'", e.el.colorCanvasContext.textAlign = "center", e.el.colorCanvasContext.fillText("上/下:", v + y, 60), e.el.colorCanvasContext.font = "italic 300 " + b + " 'Barlow'", e.el.colorCanvasContext.fillText(e.state.centeringStats.borderTopInMM + "mm / " + e.state.centeringStats.borderBottomInMM + "mm", v + y, 110), e.el.colorCanvasContext.fillStyle = "#ec008c", e.el.colorCanvasContext.font = "800 " + b + " 'Barlow'", e.el.colorCanvasContext.fillText(e.state.centeringStats.borderTopPercentage + "% / " + e.state.centeringStats.borderBottomPercentage + "%", v + y, 160);
         const w = 200 + e.state.resizedDimensions.height + 60,
             C = 50;
-        b = "30px", e.el.colorCanvasContext.fillStyle = "#ec008c", e.el.colorCanvasContext.font = "800 " + b + " 'Barlow'", e.el.colorCanvasContext.textAlign = "center", e.el.colorCanvasContext.fillText("Estimated Maximum Centering Grades", n / 2, w), e.el.colorCanvasContext.fillStyle = "#00aeef", e.el.colorCanvasContext.textAlign = "left", e.el.colorCanvasContext.fillText("Front:", C, w + 140);
+        b = "30px", e.el.colorCanvasContext.fillStyle = "#ec008c", e.el.colorCanvasContext.font = "800 " + b + " 'Barlow'", e.el.colorCanvasContext.textAlign = "center", e.el.colorCanvasContext.fillText("推定最大のセンタリング評価", n / 2, w), e.el.colorCanvasContext.fillStyle = "#00aeef", e.el.colorCanvasContext.textAlign = "left", e.el.colorCanvasContext.fillText("カードの表面:", C, w + 140);
         let T = e.el.colorCanvasContext.measureText("Front").width;
         const E = C + T + C;
-        e.el.colorCanvasContext.font = "500 " + b + " 'Barlow'", e.el.colorCanvasContext.fillStyle = "#000", x(!0, e.el.colorCanvasContext, app.settings.center.gradingStandards.psa, "PSA", E, w + 80), x(!0, e.el.colorCanvasContext, app.settings.center.gradingStandards.bgs, "BGS", E, w + 160), x(!0, e.el.colorCanvasContext, app.settings.center.gradingStandards.edge, "*CGS", E, w + 200), e.el.colorCanvasContext.strokeStyle = "#CCC", e.el.colorCanvasContext.beginPath(), e.el.colorCanvasContext.moveTo(n / 2, w + 80 - 30), e.el.colorCanvasContext.lineTo(n / 2, w + 200), e.el.colorCanvasContext.stroke(), e.el.colorCanvasContext.font = "800 " + b + " 'Barlow'", e.el.colorCanvasContext.fillStyle = "#00aeef", e.el.colorCanvasContext.fillText("Back:", n / 2 + C, w + 140), e.el.colorCanvasContext.fillStyle = "#000", e.el.colorCanvasContext.font = "500 " + b + " 'Barlow'", T = e.el.colorCanvasContext.measureText("Back").width;
+        e.el.colorCanvasContext.font = "500 " + b + " 'Barlow'", e.el.colorCanvasContext.fillStyle = "#000", x(!0, e.el.colorCanvasContext, app.settings.center.gradingStandards.cgs, "*CGS", E, w + 80), x(!0, e.el.colorCanvasContext, app.settings.center.gradingStandards.psa, "PSA", E, w + 140), x(!0, e.el.colorCanvasContext, app.settings.center.gradingStandards.bgs, "BGS", E, w + 200), e.el.colorCanvasContext.strokeStyle = "#CCC", e.el.colorCanvasContext.beginPath(), e.el.colorCanvasContext.moveTo(n / 2, w + 80 - 30), e.el.colorCanvasContext.lineTo(n / 2, w + 200), e.el.colorCanvasContext.stroke(), e.el.colorCanvasContext.font = "800 " + b + " 'Barlow'", e.el.colorCanvasContext.fillStyle = "#00aeef", e.el.colorCanvasContext.fillText("カードの裏面:", n / 2 + C, w + 140), e.el.colorCanvasContext.fillStyle = "#000", e.el.colorCanvasContext.font = "500 " + b + " 'Barlow'", T = e.el.colorCanvasContext.measureText("Back").width;
         const k = n / 2 + C + T + C;
-        x(!1, e.el.colorCanvasContext, app.settings.center.gradingStandards.psa, "PSA", k, w + 80), x(!1, e.el.colorCanvasContext, app.settings.center.gradingStandards.bgs, "BGS", k, w + 160), x(!1, e.el.colorCanvasContext, app.settings.center.gradingStandards.edge, "*CGS", k, w + 200);
+        x(!1, e.el.colorCanvasContext, app.settings.center.gradingStandards.cgs, "*CGS", k, w + 80), x(!1, e.el.colorCanvasContext, app.settings.center.gradingStandards.psa, "PSA", k, w + 140), x(!1, e.el.colorCanvasContext, app.settings.center.gradingStandards.bgs, "BGS", k, w + 200);
         var S = new Image;
-        S.src = "/images/edge-logo-white-bg.png", S.onload = function () {
+        S.src = "/images/cgs-logo.png", S.onload = function () {
             const t = S.naturalHeight / S.naturalWidth,
                 n = g - 80,
                 o = n * t;
             e.el.colorCanvasContext.drawImage(S, 48, 60, n, o);
             var i = e.el.colorCanvas.toDataURL("image/jpeg", 1);
-            const r = Math.round(2e3 * Math.random());
             document.getElementById("final-image-url").value = "", document.getElementById("final-image-img").src = i, $("#final-image").show(), $("#measure").removeClass("active")
 
+
+            //const r = Math.round(2e3 * Math.random());
             //$.ajax({
             //    type: "POST",
             //    url: "/ajax/cardaholic-save-image.php?v=" + r,
