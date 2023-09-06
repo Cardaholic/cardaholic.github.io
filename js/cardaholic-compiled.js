@@ -4280,25 +4280,30 @@ app.checkMobile(), app.checkIP(), app.setSwipeVars(), app.const = {
             }
         },
         cgs: {
-            g10: {
+            perfect: {
                 label: "10",
                 front: 50,
-                back: 50
+                back: 52
+            },
+            g10: {
+                label: "9.5",
+                front: 52,
+                back: 55
             },
             g9: {
                 label: "9",
                 front: 55,
-                back: 55
+                back: 60
             },
             g8: {
                 label: "8",
                 front: 60,
-                back: 60
+                back: 65
             },
             g7: {
                 label: "7",
                 front: 65,
-                back: 65
+                back: 70
             },
             gLessThan7: {
                 label: "<7",
