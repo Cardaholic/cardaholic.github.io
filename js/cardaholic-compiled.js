@@ -4283,7 +4283,7 @@ app.checkMobile(), app.checkIP(), app.setSwipeVars(), app.const = {
             perfect: {
                 label: "10",
                 front: 50,
-                back: 52
+                back: 50
             },
             g10: {
                 label: "9.5",
